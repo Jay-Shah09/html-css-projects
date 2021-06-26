@@ -1,0 +1,358 @@
+/* Variables */
+
+:root{
+    --letter-spacing:3px;
+    --clr-primary:red;
+    --clr-white:white;
+    --clr-offwhite:rgb(250, 247, 234);
+    --clr-grey:rgb(184, 181, 181);
+    --transition:all 0.3s linear;
+}
+
+/* Global CSS */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* color:var(--clr-primary); */
+
+}
+h1,h2,h3{
+    text-transform: capitalize;
+    letter-spacing: var(--letter-spacing);
+}
+h1,p{
+    margin-top:20px;
+}
+a{
+    text-decoration: none;
+    letter-spacing: var(--letter-spacing);
+    text-transform: capitalize;
+}
+ul{
+    list-style-type: none;
+}
+img{
+    width:100%;
+    display:block;
+}
+.button{
+    letter-spacing: 0;
+    border:3px solid var(--clr-primary);
+    display:inline-block;   /* <<--- imp */
+    padding:8px 12px;
+    margin:30px 30px;
+    transition:var(--transition);
+}
+.button:hover{
+    color:var(--clr-white);
+    background:var(--clr-primary);
+}
+
+/*
+============
+  Header
+============ 
+*/
+
+.header{
+    background:var(--clr-grey);
+    padding:0 40px;
+}
+.header a{
+    padding:20px;
+    display:block;
+    color:var(--clr-primary);
+    transition:var(--transition);
+}
+.header a:hover{
+    color:black;
+}
+@media screen and (min-width:950px){
+    .header ul{
+        width:900px;
+        /* background:orange; */  /* <<--- imp */
+
+        /* <ul> acts as a div. */
+       
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        justify-items:center;
+        
+    } 
+    .header{
+        display:grid;
+        justify-items:center;
+    }
+
+    /* .link-1{
+        background:green;    <<--- imp 
+    } */
+}    
+
+/*
+============
+Page - 1
+============ 
+*/
+
+.banner{
+    height:100vh;
+    color:var(--clr-white);
+    background:linear-gradient(rgba(255,0,0,0.6) , rgba(0,0,0,0.7)),url("./Images/mountain-town.jpeg") center/cover no-repeat;
+    display:grid; 
+    justify-content: center; 
+    align-content:center; 
+    padding:0 30px;
+}
+.banner p{
+    max-width:600px;
+    line-height: 30px;
+}
+@media screen and (max-width:750px){
+    .banner{
+        background:var(--clr-primary);
+    }
+}
+
+/*
+============
+Page - 2   ----- Go through this very thoroughly.
+============ 
+*/
+
+.cards-title{
+    text-align: center;
+}
+.card{
+    /* width:320px; */
+    margin-bottom:30px;
+    border:2px solid var(--clr-grey);
+}
+.cards-content{
+    width:80vw;
+    max-width:1100px;   /* it is written because it is useful in minmax. */
+    margin:30px auto;
+}
+.card-info{
+    padding:15px;
+}
+.card-icons{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    background:var(--clr-grey);
+    justify-items:center ;
+    padding:8px;
+}
+.card-icons a{
+    color:var(--clr-primary);
+}
+/* @media screen and (min-width:750px){
+    .cards-content{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap: 0 30px;
+    }
+}
+@media screen and (min-width:1150px){
+    .cards-content{
+        grid-template-columns:repeat(3,1fr);
+    }
+} */
+
+.cards-content{
+    display:grid;
+
+    /* max-width is 1100px so each column
+    is of (1100/3)px  but gap is of 30px so 
+    gap between 3 cards is 60px therefore 
+    each column is of [(1100/3)-60]px. And
+    auto-fill is used to make spaces for
+    next column. */
+
+    grid-template-columns:repeat(auto-fill, minmax(276.6px, 1fr));
+    gap:0 30px;
+}
+
+/* IMPORTANT */
+
+/* If any text in card is short or long then
+uneven change occurs in that card so to avoid 
+this we can consider card as one column and 
+the content of it like img,card-info,card-icons
+acts as rows. */
+
+.card{
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:auto 1fr auto;
+}
+
+/*
+============
+Page - 3
+============ 
+*/
+
+.tiles-title{
+    text-align:center;
+}
+.tiles-img{
+    width:80vw;
+    max-width:1100px;
+    margin:30px auto;
+    display:grid;
+    gap:25px 30px;
+    grid-template-columns:repeat(auto-fill, minmax(306.6px, 1fr));
+}
+
+@media screen and (min-width:1350px){
+    .tiles-img{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        grid-template-rows:repeat(5, 200px);
+        grid-template-areas:
+        "a a a b"
+        "a a a c"
+        "d d d d"
+        "e f f f"
+        "e g h i";
+        gap:30px 30px;
+    }
+    .tile-1{
+        grid-area:a;
+    }
+    .tile-2{
+        grid-area:b;
+    }
+    .tile-3{
+        grid-area:c;
+    }
+    .tile-4{
+        grid-area:d;
+    }
+    .tile-5{
+        grid-area:e;
+    }
+    .tile-6{
+        grid-area:f;
+    }
+    .tile-7{
+        grid-area:g;
+    }
+    .tile-8{
+        grid-area:h;
+    }
+    .tile-9{
+        grid-area:i;
+    }
+    .tiles-img img{
+        height:100%;  /* IMP, dont know its actual use but it solves the problem which comes in the absence of it. */
+        object-fit: cover; 
+    }
+}
+
+/*
+============
+Page - 4
+============ 
+*/
+
+.layout-header{
+    background:var(--clr-primary);
+    color:var(--clr-white);
+    text-align: center;
+    padding:10px 0;
+}
+.layout-links{
+    background:var(--clr-grey);
+    padding:10px 30px;
+}
+.layout-links a{
+    display:inline-block;
+    color:black;
+    transition:var(--transition);
+    padding:20px 0;
+}
+.layout-links a:hover{
+    color:var(--clr-white);
+}
+.layout-info p{
+    padding:10px 30px;
+    line-height:30px;
+}
+.layout-icons{
+    background:var(--clr-primary);
+    color:var(--clr-white);
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    justify-items:center;
+    padding:10px 0;
+}
+.layout{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto 1fr auto auto;
+}
+.layout-footer{
+    background:black;
+    color:var(--clr-white);
+    text-align:center;
+    padding:10px 0;
+}
+.layout-footer h3{
+    font-weight:normal;
+}
+@media screen and (min-width:750px){
+    .layout-links ul{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        justify-items:center;
+    }
+}
+@media screen and (min-width:1150px){
+    .layout-links ul{
+        display:grid;
+        grid-template-columns:1fr;
+        grid-template-rows:repeat(4, 1fr);
+        align-items: center;
+        height:100%;  /* <<--- IMP */
+    }
+    .layout-icons{
+        background:var(--clr-grey);
+        display:grid;
+        grid-template-columns:1fr;
+        grid-template-rows:repeat(4, 1fr);
+        align-items:center;
+    }
+    .layout{
+        max-width:100vw;
+        display:grid;
+        grid-template-columns:200px 1fr 50px;
+        grid-template-rows:50px 1fr 40px;
+        grid-template-areas:
+        "a a a"
+        "b c d"
+        "e e e";
+    }
+    .layout-header{
+        grid-area:a;
+    }
+    .layout-info{
+        grid-area:c;
+    }
+    .layout-links{
+        grid-area:b;
+    }
+    .layout-icons{
+        grid-area:d;
+    }
+    .layout-footer{
+        grid-area:e;
+    }
+}
